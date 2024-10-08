@@ -1,0 +1,21 @@
+.hero {
+  background: url("../../assets/imges/landing-page/Frame.png") !important;
+  background-position: right top;
+  background-size: 40% 150%;
+  background-repeat: no-repeat;
+}
+.heroImgAnimation {
+  animation: appear 3s;
+}
+
+@keyframes appear {
+  0% {
+    max-width: 25%;
+    display: none;
+  }
+
+  100% {
+    display: block;
+    max-width: 100%;
+  }
+}
