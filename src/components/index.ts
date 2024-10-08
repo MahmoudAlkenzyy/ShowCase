@@ -17,6 +17,7 @@ import DownloadSection from "./DownloadSection/DownloadSection";
 import InputForm from "./InputForm/InputForm";
 import Footer from "./Footer/Footer";
 import { FooterList } from "./FooterList/FooterList";
+import AllVehicles from "./AllVehicles/AllVehicles";
 
 export {
   Home,
@@ -38,4 +39,5 @@ export {
   InputForm,
   Footer,
   FooterList,
+  AllVehicles,
 };

@@ -4,6 +4,7 @@ import { carInterface } from "../../types/index";
 import { useState } from "react";
 import { useSearch } from "../../hooks/useSearch";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Cars = () => {
   const [query, setQuery] = useState("");
@@ -27,10 +28,13 @@ const Cars = () => {
               return <CarCard key={idx} car={car} />;
             })}
       </div>
-      <button className="px-10 py-2 m-auto mt-10 flex gap-2 text-[#6c757d] items-center border-[#6c757d] border rounded-lg hover:bg-[#6c757d] hover:text-white transition-all">
+      <Link
+        to={"all-vehicles"}
+        className="px-10 w-[250px] py-2 w- m-auto mt-10 flex gap-2 text-[#6c757d] items-center border-[#6c757d] border rounded-lg hover:bg-[#6c757d] hover:text-white transition-all"
+      >
         Show all Vehicles
         <FaLongArrowAltRight size={20} />
-      </button>
+      </Link>
     </div>
   );
 };
