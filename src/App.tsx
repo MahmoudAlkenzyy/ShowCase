@@ -1,10 +1,11 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
-import { AllVehicles, Home, MasterLayout } from "./components/index";
+import { AllVehicles, CarDetails, Home, MasterLayout } from "./components/index";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 function App() {
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     {
       path: "/",
       element: <MasterLayout />,
@@ -17,15 +18,26 @@ function App() {
           path: "/all-vehicles",
           element: <AllVehicles />,
         },
+        {
+          path: "/all-vehicles/car/:carId",
+          element: <CarDetails />,
+        },
       ],
     },
   ]);
 
-  const client = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 60 * 1000,
+      },
+    },
+  });
   return (
     <>
-      <QueryClientProvider client={client}>
+      <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </>
   );

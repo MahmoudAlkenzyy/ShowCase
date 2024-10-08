@@ -19,6 +19,7 @@ import Footer from "./Footer/Footer";
 import { FooterList } from "./FooterList/FooterList";
 import AllVehicles from "./AllVehicles/AllVehicles";
 import Pagination from "./Pagination/Pagination";
+import CarDetails from "./CarDetails/CarDetails";
 
 export {
   Home,
@@ -42,4 +43,5 @@ export {
   FooterList,
   AllVehicles,
   Pagination,
+  CarDetails,
 };

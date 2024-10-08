@@ -3,6 +3,7 @@ import { CarCard, Pagination, Search, SectionHead } from "../index";
 import { useSearch } from "../../hooks/useSearch";
 import { carInterface } from "../../types";
 import { useAllVehicles } from "../../hooks/useAllVehicles";
+import { Link } from "react-router-dom";
 
 const AllVehicles = () => {
   const [query, setQuery] = useState("");
@@ -17,7 +18,13 @@ const AllVehicles = () => {
   };
   if (isLoading) return <p>Loading</p>;
   return (
-    <div className="py-10 mt-14  w-[80%] m-auto">
+    <div className="py-10 mt-14 text-slate-00  w-[80%] m-auto">
+      <span>
+        <Link className="text-blue-500 hover:text-blue-700 transition-all" to={"/"}>
+          Home
+        </Link>{" "}
+        / Cars
+      </span>
       <SectionHead head="POPULAR RENTAL DEALS" />
       <h2 className="text-center font-semibold text-xl py-5">Most popular cars rental deals</h2>
       <Search query={query} setQuery={setQuery} onClick={onClick} />

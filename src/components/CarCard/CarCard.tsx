@@ -5,6 +5,7 @@ import { FaCalendarAlt, FaStar } from "react-icons/fa";
 import { IoPersonOutline, IoSnowOutline } from "react-icons/io5";
 import { GiGearStickPattern } from "react-icons/gi";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 const CarCard = ({ car }: { car: carInterface }) => {
   return (
     <div className=" pt-4 md:max-w-sm md:w-1/4 sm:w-1/2 min-w-[290px] flex flex-col items-center justify-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -44,10 +45,13 @@ const CarCard = ({ car }: { car: carInterface }) => {
             <span className="text-black font-semibold">$25000</span>/day
           </span>
         </div>
-        <button className="inline-flex transition-all w-full justify-center text-center gap-1 items-center px-3 py-2 text-sm font-medium  text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <Link
+          to={`/all-vehicles/car/${car.id}`}
+          className="inline-flex transition-all w-full justify-center text-center gap-1 items-center px-3 py-2 text-sm font-medium  text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
           View details
           <FaArrowRightLong />
-        </button>
+        </Link>
       </div>
     </div>
   );
