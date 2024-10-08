@@ -18,6 +18,7 @@ import InputForm from "./InputForm/InputForm";
 import Footer from "./Footer/Footer";
 import { FooterList } from "./FooterList/FooterList";
 import AllVehicles from "./AllVehicles/AllVehicles";
+import Pagination from "./Pagination/Pagination";
 
 export {
   Home,
@@ -40,4 +41,5 @@ export {
   Footer,
   FooterList,
   AllVehicles,
+  Pagination,
 };

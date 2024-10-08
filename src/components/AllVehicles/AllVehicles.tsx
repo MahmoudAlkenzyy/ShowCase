@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { CarCard, Search, SectionHead } from "../index";
-import { useMostPopular } from "../../hooks/useMostPopular";
+import { CarCard, Pagination, Search, SectionHead } from "../index";
 import { useSearch } from "../../hooks/useSearch";
 import { carInterface } from "../../types";
-import { Link } from "react-router-dom";
-import { FaLongArrowAltRight } from "react-icons/fa";
+import { useAllVehicles } from "../../hooks/useAllVehicles";
 
 const AllVehicles = () => {
   const [query, setQuery] = useState("");
-  const { mostPopular, isLoading } = useMostPopular();
-
+  const [current, setCurrent] = useState(1);
+  const { AllVehicles, isLoading } = useAllVehicles();
+  const onchange = (val: number) => {
+    setCurrent(val);
+  };
   const { search, filtered } = useSearch();
   const onClick = () => {
     console.log(search({ query }));
@@ -24,14 +25,15 @@ const AllVehicles = () => {
       <div className="container  mx-auto">
         <div className="flex flex-wrap gap-6 justify-center ">
           {filtered.length
-            ? filtered?.map((car: carInterface, idx: number) => {
+            ? filtered.slice((current - 1) * 7, current * 7)?.map((car: carInterface, idx: number) => {
                 return <CarCard key={idx} car={car} />;
               })
-            : mostPopular?.map((car: carInterface, idx: number) => {
+            : AllVehicles.slice((current - 1) * 7, current * 7)?.map((car: carInterface, idx: number) => {
                 return <CarCard key={idx} car={car} />;
               })}
         </div>
       </div>
+      <Pagination currentPage={current} totalPages={Math.ceil(AllVehicles?.length / 7)} onChange={onchange} />
     </div>
   );
 };

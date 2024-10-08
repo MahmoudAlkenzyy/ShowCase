@@ -22,3 +22,9 @@ export interface infoCardProps {
   header: string;
   Icon: React.ReactNode;
 }
+
+export interface paginauopnProps {
+  totalPages: number;
+  currentPage: number;
+  onChange: (val: number) => void;
+}
