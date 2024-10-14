@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CarCard, Pagination, Search, SectionHead } from "../index";
-import { useSearch } from "../../hooks/useSearch";
 import { carInterface } from "../../types";
 import { useAllVehicles } from "../../hooks/useAllVehicles";
 import { Link } from "react-router-dom";
@@ -8,14 +7,21 @@ import { Link } from "react-router-dom";
 const AllVehicles = () => {
   const [query, setQuery] = useState("");
   const [current, setCurrent] = useState(1);
+  const [filtered, setFiltered] = useState([]);
   const { AllVehicles, isLoading } = useAllVehicles();
   const onchange = (val: number) => {
     setCurrent(val);
   };
-  const { search, filtered } = useSearch();
+  // const { search, filtered } = useSearch();
+  const getfiltered = AllVehicles?.filter((car: carInterface) => car.car.includes(query));
   const onClick = () => {
-    console.log(search({ query }));
+    setFiltered(getfiltered);
+    console.log(filtered);
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setFiltered(AllVehicles);
+  }, [current, AllVehicles]);
   if (isLoading) return <p>Loading</p>;
   return (
     <div className="py-10 mt-14 text-slate-00  w-[80%] m-auto">
@@ -31,13 +37,16 @@ const AllVehicles = () => {
 
       <div className="container  mx-auto">
         <div className="flex flex-wrap gap-6 justify-center ">
-          {filtered.length
-            ? filtered.slice((current - 1) * 7, current * 7)?.map((car: carInterface, idx: number) => {
-                return <CarCard key={idx} car={car} />;
-              })
-            : AllVehicles.slice((current - 1) * 7, current * 7)?.map((car: carInterface, idx: number) => {
-                return <CarCard key={idx} car={car} />;
-              })}
+          {
+            // filtered.length
+            //   ?
+            filtered?.slice((current - 1) * 7, current * 7)?.map((car: carInterface, idx: number) => {
+              return <CarCard key={idx} car={car} />;
+            })
+            // : AllVehicles.slice((current - 1) * 7, current * 7)?.map((car: carInterface, idx: number) => {
+            //     return <CarCard key={idx} car={car} />;
+            // })
+          }
         </div>
       </div>
       <Pagination currentPage={current} totalPages={Math.ceil(AllVehicles?.length / 7)} onChange={onchange} />

@@ -1,6 +1,6 @@
 import { paginauopnProps } from "../../types";
 
-const Pagination = ({ totalPages, currentPage, onChange }: paginauopnProps) => {
+const Pagination = ({ totalPages, currentPage = 1, onChange }: paginauopnProps) => {
   const pages: number[] = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
@@ -16,9 +16,9 @@ const Pagination = ({ totalPages, currentPage, onChange }: paginauopnProps) => {
           </button>
         </li>
         {pages.map((num) => {
-          return (
-            <li key={num}>
-              <span
+          return currentPage + 4 >= num && num >= currentPage - 4 ? (
+            <li className="transition-all " key={num}>
+              <button
                 onClick={() => onChange(num)}
                 className={`flex transition-all items-center  justify-center px-4 h-10 leading-tight text-gray-500 ${
                   currentPage == num
@@ -27,9 +27,9 @@ const Pagination = ({ totalPages, currentPage, onChange }: paginauopnProps) => {
                 } border border-gray-300 `}
               >
                 {num}
-              </span>
+              </button>
             </li>
-          );
+          ) : null;
         })}
 
         <li>

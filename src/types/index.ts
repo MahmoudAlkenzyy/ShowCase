@@ -2,19 +2,14 @@ import React from "react";
 
 export interface carInterface {
   id: number;
-  make: string;
-  model: string;
-  year: number;
-  color: string;
-  mileage: number;
-  price: number;
-  fuelType: string;
-  transmission: string;
-  engine: string;
-  horsepower: number;
-  features: string[];
-  owners: number;
-  image: string;
+
+  car: string;
+  car_model: string;
+  car_color: string;
+  car_model_year: number;
+  car_vin: string;
+  price: string;
+  availability: boolean;
 }
 
 export interface infoCardProps {

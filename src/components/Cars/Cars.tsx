@@ -1,14 +1,14 @@
-import { useMostPopular } from "../../hooks/useMostPopular";
 import { CarCard, Search, SectionHead } from "../index";
 import { carInterface } from "../../types/index";
 import { useState } from "react";
 import { useSearch } from "../../hooks/useSearch";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useAllVehicles } from "../../hooks/useAllVehicles";
 
 const Cars = () => {
   const [query, setQuery] = useState("");
-  const { mostPopular, isLoading } = useMostPopular();
+  const { AllVehicles, isLoading } = useAllVehicles();
 
   const { search, filtered } = useSearch();
   const onClick = () => {
@@ -24,7 +24,7 @@ const Cars = () => {
           ? filtered.slice(0, 3)?.map((car: carInterface, idx: number) => {
               return <CarCard key={idx} car={car} />;
             })
-          : mostPopular?.map((car: carInterface, idx: number) => {
+          : AllVehicles.slice(0, 4)?.map((car: carInterface, idx: number) => {
               return <CarCard key={idx} car={car} />;
             })}
       </div>

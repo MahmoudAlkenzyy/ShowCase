@@ -7,8 +7,8 @@ export const useCar = () => {
   const { data: CarDetails, isLoading } = useQuery({
     queryFn: async () => {
       try {
-        const { data } = await axios.get(`https://freetestapi.com/api/v1/cars/${carId}`);
-        console.log(data);
+        const { data } = await axios.get(`https://myfakeapi.com/api/cars/${carId}`);
+        // console.log(data);
 
         return data;
       } catch (error) {
@@ -18,5 +18,5 @@ export const useCar = () => {
     queryKey: [`car-${carId}`],
   });
 
-  return { CarDetails, isLoading };
+  return { CarDetails: CarDetails?.Car, isLoading };
 };

@@ -5,7 +5,7 @@ export const useAllVehicles = () => {
   const { data: AllVehicles, isLoading } = useQuery({
     queryFn: async () => {
       try {
-        const { data } = await axios.get("https://freetestapi.com/api/v1/cars");
+        const { data } = await axios.get("https://myfakeapi.com/api/cars/?limit=4");
 
         return data;
       } catch (error) {
@@ -15,5 +15,5 @@ export const useAllVehicles = () => {
     queryKey: ["All-Vehicles"],
   });
 
-  return { AllVehicles, isLoading };
+  return { AllVehicles: AllVehicles?.cars, isLoading };
 };
