@@ -20,8 +20,8 @@ const AllVehicles = () => {
   };
   useEffect(() => {
     window.scrollTo(0, 0);
-    setFiltered(AllVehicles);
-  }, [current, AllVehicles]);
+    if (query.length < 1) setFiltered(AllVehicles);
+  }, [current, AllVehicles, filtered]);
   if (isLoading) return <p>Loading</p>;
   return (
     <div className="py-10 mt-14 text-slate-00  w-[80%] m-auto">
